@@ -11,14 +11,14 @@ describe("birthday memory progress", () => {
   });
 
   it("returns an empty set when saved data is malformed", () => {
-    localStorage.setItem("lijinman-birthday-progress", "{broken");
+    localStorage.setItem("lijinman-birthday-progress-v2", "{broken");
 
     expect([...loadProgress()]).toEqual([]);
   });
 
   it("drops values that are not memory ids", () => {
     localStorage.setItem(
-      "lijinman-birthday-progress",
+      "lijinman-birthday-progress-v2",
       JSON.stringify(["02", 3, null, "09"]),
     );
 

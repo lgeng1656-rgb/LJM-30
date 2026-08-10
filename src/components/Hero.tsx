@@ -22,7 +22,7 @@ export function Hero({ onStart }: HeroProps) {
       />
       <aside className="hero__note" aria-label="小贴士">
         <strong>小贴士</strong>
-        <span>沿着快乐路线，把散落的十块奶酪都带回来。</span>
+        <span>先找回九段快乐回忆，第十块奶酪里藏着最后的惊喜。</span>
       </aside>
     </section>
   );

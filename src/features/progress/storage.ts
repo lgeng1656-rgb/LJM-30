@@ -1,10 +1,11 @@
-const STORAGE_KEY = "lijinman-birthday-progress";
+const STORAGE_KEY = "lijinman-birthday-progress-v2";
+const MEMORY_IDS = new Set(Array.from({ length: 9 }, (_, index) => String(index + 1).padStart(2, "0")));
 
 export function loadProgress(): Set<string> {
   try {
     const parsed: unknown = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "[]");
     if (!Array.isArray(parsed)) return new Set();
-    return new Set(parsed.filter((value): value is string => typeof value === "string"));
+    return new Set(parsed.filter((value): value is string => typeof value === "string" && MEMORY_IDS.has(value)));
   } catch {
     return new Set();
   }

@@ -15,51 +15,41 @@ const nodePositions = [
 
 export function MemoryMap({ memories, collectedIds, onOpen, onOpenFinale }: MemoryMapProps) {
   const complete = collectedIds.size === memories.length;
+  const finalPosition = nodePositions[9];
 
   return (
-    <section className="map-page" aria-labelledby="map-title">
-      <div className="section-heading">
-        <div>
-          <p className="section-number">02</p>
-          <h1 id="map-title">10 块快乐奶酪</h1>
-          <p className="progress-copy">已收集 {collectedIds.size} / 10 块快乐奶酪</p>
-        </div>
-        <p className="section-intro">每一块奶酪，都是没有顺序却闪闪发光的日子。</p>
-      </div>
-
-      <div className="memory-map">
-        <div className="memory-map__stage">
-          <img src="/assets/memory-map.png" alt="通往十段快乐回忆的人生游乐地图" />
-          {memories.map((memory, index) => {
-            const collected = collectedIds.has(memory.id);
-            const [x, y] = nodePositions[index];
-            return (
-              <button
-                className={`cheese-node${collected ? " cheese-node--collected" : ""}`}
-                key={memory.id}
-                onClick={() => onOpen(index)}
-                style={{ "--node-x": `${x}%`, "--node-y": `${y}%` } as CSSProperties}
-                type="button"
-                aria-label={`打开第 ${memory.id} 块奶酪：${memory.title}`}
-              >
-                <img src="/assets/cheese.png" alt="" />
-                <span className="cheese-node__number">{memory.id}</span>
-                {collected && <span className="cheese-node__stamp">已找到</span>}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      <div className="finale-unlock">
-        <div>
-          <strong>{complete ? "最后一块奶酪正在发光！" : "终点正在等你"}</strong>
-          <span>{complete ? "主祝福视频已经解锁。" : `还差 ${memories.length - collectedIds.size} 块奶酪。`}</span>
-        </div>
-        <button className="button button--coral" type="button" disabled={!complete} onClick={onOpenFinale}>
-          开启最后的惊喜
-        </button>
-      </div>
+    <section className="map-page" aria-label="十块奶酪回忆地图">
+      <img className="memory-map__art" src="/assets/memory-map.png" alt="通往九段回忆和最后惊喜的人生游乐地图" />
+      {memories.map((memory, index) => {
+        const collected = collectedIds.has(memory.id);
+        const [x, y] = nodePositions[index];
+        return (
+          <button
+            className={`cheese-node${collected ? " cheese-node--collected" : ""}`}
+            key={memory.id}
+            onClick={() => onOpen(index)}
+            style={{ "--node-x": `${x}%`, "--node-y": `${y}%` } as CSSProperties}
+            type="button"
+            aria-label={`打开第 ${memory.id} 块奶酪：${memory.title}`}
+          >
+            <img src="/assets/cheese.png" alt="" />
+            <span className="cheese-node__number">{memory.id}</span>
+            {collected && <span className="cheese-node__stamp">已找到</span>}
+          </button>
+        );
+      })}
+      <button
+        className={`cheese-node cheese-node--final${complete ? " cheese-node--unlocked" : ""}`}
+        disabled={!complete}
+        onClick={onOpenFinale}
+        style={{ "--node-x": `${finalPosition[0]}%`, "--node-y": `${finalPosition[1]}%` } as CSSProperties}
+        type="button"
+        aria-label="打开第 10 块奶酪：最后的惊喜"
+      >
+        <img src="/assets/cheese.png" alt="" />
+        <span className="cheese-node__number">10</span>
+        <span className="cheese-node__hint">{complete ? "最后惊喜" : `${collectedIds.size}/9`}</span>
+      </button>
     </section>
   );
 }

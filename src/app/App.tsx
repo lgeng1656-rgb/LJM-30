@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { birthdayContent } from "../content/memories";
 import { Finale } from "../components/Finale";
 import { Hero } from "../components/Hero";
@@ -12,10 +12,6 @@ export function App() {
   const [screen, setScreen] = useState<Screen>("home");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [collectedIds, setCollectedIds] = useState<Set<string>>(() => loadProgress());
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [screen]);
 
   const openMemory = (index: number) => {
     const next = new Set(collectedIds).add(birthdayContent.memories[index].id);
@@ -31,21 +27,8 @@ export function App() {
   };
 
   return (
-    <div className="app-shell">
-      <header className="site-header">
-        <button className="brand" type="button" onClick={() => setScreen("home")}>猫鼠三十 · 追光之旅</button>
-        <nav aria-label="主要导航">
-          <button type="button" onClick={() => setScreen("home")}>首页</button>
-          <button type="button" onClick={() => setScreen("map")}>奶酪收集</button>
-          <button type="button" onClick={() => setScreen("map")}>人生游乐地图</button>
-          <button type="button" disabled={collectedIds.size < 10} onClick={() => setScreen("finale")}>生日视频</button>
-        </nav>
-        <span className="header-progress" aria-label={`已收集 ${collectedIds.size} 块奶酪`}>
-          {collectedIds.size}/10
-        </span>
-      </header>
-
-      <main>
+    <main className="app-shell">
+      <div className={`experience-stage experience-stage--${screen}`}>
         {screen === "home" && <Hero onStart={() => setScreen("map")} />}
         {screen === "map" && (
           <MemoryMap
@@ -66,7 +49,7 @@ export function App() {
         {screen === "finale" && (
           <Finale videoSrc={birthdayContent.finaleVideo} onReturnToMap={() => setScreen("map")} />
         )}
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }

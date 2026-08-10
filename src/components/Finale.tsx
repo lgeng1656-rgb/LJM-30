@@ -14,8 +14,7 @@ export function Finale({ videoSrc, onReturnToMap }: FinaleProps) {
       <section className="birthday-finale" aria-labelledby="birthday-title">
         <img src="/assets/finale-banner.png" alt="汤姆和杰瑞在新旅程入口共同拉开生日横幅" />
         <div className="birthday-finale__copy">
-          <h1 id="birthday-title">李金蔓，三十岁生日快乐！</h1>
-          <p>新地图已开启，继续做最快乐的杰瑞。</p>
+          <h1 id="birthday-title">李金蔓，生日快乐！</h1>
         </div>
         <button className="button button--coral birthday-finale__back" type="button" onClick={onReturnToMap}>
           再看一次回忆
@@ -27,9 +26,8 @@ export function Finale({ videoSrc, onReturnToMap }: FinaleProps) {
   return (
     <section className="video-letter" aria-labelledby="video-title">
       <div className="video-letter__copy">
-        <p className="section-number">11</p>
         <h1 id="video-title">最后一块奶酪，藏着一封会动的信</h1>
-        <p>前面的十段快乐都找到了，现在把时间留给最重要的祝福。</p>
+        <p>前面的九段快乐都找到了，现在把时间留给最重要的祝福。</p>
       </div>
       <div className="video-letter__frame">
         {videoFailed ? (
@@ -43,8 +41,8 @@ export function Finale({ videoSrc, onReturnToMap }: FinaleProps) {
           </video>
         )}
       </div>
-      <button className="button button--primary" type="button" onClick={() => setRevealed(true)}>
-        继续前往新地图
+      <button className="button button--primary video-letter__continue" type="button" onClick={() => setRevealed(true)}>
+        展开生日横幅
       </button>
     </section>
   );

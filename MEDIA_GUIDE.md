@@ -1,8 +1,8 @@
 # 生日网站素材替换指南
 
-网站已经为十段回忆和一支主祝福视频留好位置。所有素材都放在 `public/media` 下，路径中的大小写必须与配置完全一致。
+网站已经为九段回忆和一支主祝福视频留好位置。第十块奶酪会在前九段回忆收集完后解锁，并直接打开主祝福视频。所有素材都放在 `public/media` 下，路径中的大小写必须与配置完全一致。
 
-## 十段回忆
+## 九段回忆
 
 每块奶酪对应一个目录：
 
@@ -10,10 +10,10 @@
 public/media/memories/01/
 public/media/memories/02/
 ...
-public/media/memories/10/
+public/media/memories/09/
 ```
 
-默认会读取每个目录里的 `cover.jpg`。最简单的替换方式，是把十张封面图分别命名为 `cover.jpg` 放入对应目录。
+默认会读取每个目录里的 `cover.jpg`。最简单的替换方式，是把九张封面图分别命名为 `cover.jpg` 放入对应目录。
 
 要使用视频或增加多张素材，请编辑 `src/content/memories.ts` 中对应项目的 `media`：
 

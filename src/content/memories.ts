@@ -10,7 +10,6 @@ const titles = [
   "被温柔接住的时候",
   "我们共同喜欢的风景",
   "生活送来的彩蛋",
-  "下一站，继续快乐",
 ];
 
 export const birthdayContent: BirthdayContent = {
