@@ -1,0 +1,20 @@
+:root {
+  --paper: #fff8e9;
+  --paper-deep: #f9edcf;
+  --paper-light: #fffdf6;
+  --cheese: #f7bd42;
+  --cheese-deep: #e79824;
+  --coral: #ea7c6a;
+  --coral-deep: #d85f50;
+  --ink: #673d19;
+  --ink-soft: #8b6849;
+  --sage: #9fa277;
+  --line: rgba(128, 85, 38, 0.18);
+  --shadow-paper: 0 18px 45px rgba(102, 64, 26, 0.14), 0 2px 8px rgba(102, 64, 26, 0.1);
+  --shadow-button: 0 8px 18px rgba(223, 139, 35, 0.26);
+  --radius-lg: 30px;
+  --radius-md: 20px;
+  --content: 1280px;
+  --font-display: "STKaiti", "KaiTi", "FangSong", serif;
+  --font-body: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+}
