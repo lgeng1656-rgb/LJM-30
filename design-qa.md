@@ -4,6 +4,7 @@
 
 - Source visual truth: the six user-provided screenshots and the corrected hero artwork supplied on 2026-08-10.
 - Final side-by-side comparison: `docs/qa/finale-comparison.png` (reference left, implementation right).
+- Final text-position comparison: `docs/qa/finale-position-comparison.png` (annotated target left, implementation right).
 - 1600 × 900 implementation captures:
   - `docs/qa/hero-1600x900.png`
   - `docs/qa/map-1600x900.png`
@@ -21,6 +22,7 @@
 - Memory detail remains inside the 16:9 stage and keeps the scrapbook media frame, note, and navigation controls visible at once.
 - The final-video page reads “前面的九段快乐都找到了” and uses the full stage.
 - Finale fills the stage. The old subtitle is absent, and “李金蔓，生日快乐！” fits completely inside the cloth banner.
+- The final message is centered in the user-marked lower banner area rather than along the cloth's top edge.
 - Finale entry includes scene settling plus a center-out banner-copy reveal, with a reduced-motion fallback.
 
 ## Findings

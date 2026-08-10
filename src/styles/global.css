@@ -325,11 +325,11 @@ button:focus-visible {
 
 .birthday-finale__copy {
   position: absolute;
-  top: 54.5%;
+  top: 68.5%;
   left: 50%;
   display: grid;
-  width: 46%;
-  height: 23%;
+  width: 36%;
+  height: 14%;
   place-items: center;
   transform: translate(-50%, -50%);
   overflow: hidden;
