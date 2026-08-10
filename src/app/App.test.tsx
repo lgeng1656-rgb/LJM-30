@@ -1,10 +1,21 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { App } from "./App";
 
 describe("birthday adventure entry", () => {
   beforeEach(() => localStorage.clear());
+
+  it("returns the next screen to the top when opening the map", async () => {
+    const scrollTo = vi.fn();
+    window.scrollTo = scrollTo;
+    const user = userEvent.setup();
+    render(<App />);
+
+    await user.click(screen.getByRole("button", { name: "开始追奶酪" }));
+
+    expect(scrollTo).toHaveBeenLastCalledWith({ top: 0, behavior: "smooth" });
+  });
 
   it("invites the visitor to start the cheese chase", () => {
     render(<App />);

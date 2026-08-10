@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { birthdayContent } from "../content/memories";
 import { Finale } from "../components/Finale";
 import { Hero } from "../components/Hero";
@@ -12,6 +12,10 @@ export function App() {
   const [screen, setScreen] = useState<Screen>("home");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [collectedIds, setCollectedIds] = useState<Set<string>>(() => loadProgress());
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [screen]);
 
   const openMemory = (index: number) => {
     const next = new Set(collectedIds).add(birthdayContent.memories[index].id);
