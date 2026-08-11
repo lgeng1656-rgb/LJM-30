@@ -90,7 +90,7 @@ describe("birthday adventure entry", () => {
     await user.click(screen.getByRole("button", { name: "返回奶酪地图" }));
     await user.click(screen.getByRole("button", { name: /打开第 01 块奶酪/ }));
 
-    expect(container.querySelector(".memory-detail img.media-frame")).toHaveAttribute("src", "/media/memories/01/01.png");
+    expect(container.querySelector(".memory-detail img.media-frame")).toHaveAttribute("src", "/media/memories/01/01.webp");
     expect(screen.queryByLabelText("补充回忆素材位")).not.toBeInTheDocument();
   });
 
@@ -103,16 +103,16 @@ describe("birthday adventure entry", () => {
     await user.click(screen.getByRole("button", { name: /打开第 08 块奶酪/ }));
 
     expect(screen.getAllByRole("button", { name: /素材 \d/ })).toHaveLength(2);
-    expect(container.querySelector(".memory-detail img.media-frame")).toHaveAttribute("src", "/media/memories/08/08.1.png");
+    expect(container.querySelector(".memory-detail img.media-frame")).toHaveAttribute("src", "/media/memories/08/08.1.webp");
     await user.click(screen.getByRole("button", { name: "素材 2" }));
-    expect(container.querySelector(".memory-detail img.media-frame")).toHaveAttribute("src", "/media/memories/08/08.2.jpg");
+    expect(container.querySelector(".memory-detail img.media-frame")).toHaveAttribute("src", "/media/memories/08/08.2.webp");
 
     await user.click(screen.getByRole("button", { name: "返回奶酪地图" }));
     await user.click(screen.getByRole("button", { name: /打开第 09 块奶酪/ }));
 
     expect(screen.getAllByRole("button", { name: /素材 \d/ })).toHaveLength(4);
     await user.click(screen.getByRole("button", { name: "素材 4" }));
-    expect(container.querySelector(".memory-detail img.media-frame")).toHaveAttribute("src", "/media/memories/09/09.4.jpg");
+    expect(container.querySelector(".memory-detail img.media-frame")).toHaveAttribute("src", "/media/memories/09/09.4.webp");
   });
 
   it("records any of the first nine cheeses as a memory", async () => {
@@ -144,7 +144,7 @@ describe("birthday adventure entry", () => {
     await user.click(finalCheese);
 
     expect(screen.getByRole("heading", { name: "最后一块奶酪，藏着一封会动的信" })).toBeInTheDocument();
-    expect(screen.getByText(/前面的九段快乐都找到了/)).toBeInTheDocument();
+    expect(screen.queryByText(/前面的九段快乐都找到了/)).not.toBeInTheDocument();
     expect(screen.getByLabelText("李金蔓生日祝福视频")).toBeInTheDocument();
   });
 

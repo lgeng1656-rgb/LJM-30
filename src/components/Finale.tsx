@@ -27,7 +27,6 @@ export function Finale({ videoSrc, onReturnToMap }: FinaleProps) {
     <section className="video-letter" aria-labelledby="video-title">
       <div className="video-letter__copy">
         <h1 id="video-title">最后一块奶酪，藏着一封会动的信</h1>
-        <p>前面的九段快乐都找到了，现在把时间留给最重要的祝福。</p>
       </div>
       <div className="video-letter__frame">
         {videoFailed ? (
