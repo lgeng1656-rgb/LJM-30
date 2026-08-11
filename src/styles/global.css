@@ -295,7 +295,7 @@ button:focus-visible {
   display: grid;
   width: 100%;
   aspect-ratio: 16 / 9;
-  object-fit: cover;
+  object-fit: contain;
   border: 0;
   background: #ead1b8;
 }
@@ -314,8 +314,9 @@ button:focus-visible {
 .media-frame--empty strong { color: var(--ink); font-family: var(--font-display); font-size: clamp(14px, 1.7vw, 26px); }
 .media-frame--empty span { max-width: 360px; font-size: clamp(8px, .78vw, 13px); line-height: 1.6; }
 
-.thumbnail-rail { display: grid; grid-template-columns: repeat(4, 1fr); gap: .7vw; padding-top: 1.1vh; }
-.thumbnail-rail span { display: grid; min-height: 5.5vh; place-items: center; border: 1px solid var(--line); color: #a78b6b; background: #fffaf0; font-size: clamp(7px, .7vw, 11px); }
+.thumbnail-rail { display: grid; grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: .7vw; padding-top: 1.1vh; }
+.thumbnail-rail__item { display: grid; min-height: 5.5vh; cursor: pointer; place-items: center; border: 1px solid var(--line); color: #a78b6b; background: #fffaf0; font: inherit; font-size: clamp(7px, .7vw, 11px); }
+.thumbnail-rail__item--active { border-color: rgba(232, 153, 16, .72); color: var(--ink); background: var(--cheese-pale); }
 
 .memory-detail__note {
   position: relative;

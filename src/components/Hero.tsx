@@ -10,7 +10,6 @@ export function Hero({ onStart }: HeroProps) {
           30 岁的第一场冒险，
           <span>由我们一起开启！</span>
         </h1>
-        <p>烦恼在后面追，汤姆在身边闹，快乐奶酪要一块一块找回来。</p>
         <button className="button button--primary" type="button" onClick={onStart}>
           开始追奶酪
         </button>
