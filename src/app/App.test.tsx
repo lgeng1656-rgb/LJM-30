@@ -1,13 +1,37 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { beforeEach, describe, expect, it } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { App } from "./App";
 
-describe("birthday adventure entry", () => {
-  beforeEach(() => localStorage.clear());
+async function enterBirthdayHome(user: ReturnType<typeof userEvent.setup>) {
+  fireEvent.ended(screen.getByLabelText("生日开场视频"));
+  await user.click(screen.getByRole("button", { name: "点击任意位置进入" }));
+}
 
-  it("shows only the 16:9 experience without a site navigation", () => {
+describe("birthday adventure entry", () => {
+  beforeEach(() => {
+    localStorage.clear();
+    vi.restoreAllMocks();
+    vi.spyOn(HTMLMediaElement.prototype, "play").mockResolvedValue();
+  });
+
+  it("shows the birthday home only after the intro finishes and the visitor enters", async () => {
+    const user = userEvent.setup();
+    const { container } = render(<App />);
+
+    expect(screen.getByLabelText("生日开场视频")).toBeInTheDocument();
+    expect(container.querySelector(".hero")).not.toBeInTheDocument();
+
+    fireEvent.ended(screen.getByLabelText("生日开场视频"));
+    await user.click(screen.getByRole("button", { name: "点击任意位置进入" }));
+
+    expect(container.querySelector(".hero")).toBeInTheDocument();
+  });
+
+  it("shows only the 16:9 experience without a site navigation", async () => {
+    const user = userEvent.setup();
     render(<App />);
+    await enterBirthdayHome(user);
 
     expect(screen.queryByRole("navigation")).not.toBeInTheDocument();
     expect(screen.getByRole("heading", { name: /30 岁的第一场冒险/ })).toBeInTheDocument();
@@ -17,6 +41,7 @@ describe("birthday adventure entry", () => {
   it("records any of the first nine cheeses as a memory", async () => {
     const user = userEvent.setup();
     render(<App />);
+    await enterBirthdayHome(user);
 
     await user.click(screen.getByRole("button", { name: "开始追奶酪" }));
     await user.click(screen.getByRole("button", { name: /打开第 07 块奶酪/ }));
@@ -29,6 +54,7 @@ describe("birthday adventure entry", () => {
   it("makes cheese ten the final surprise after the first nine memories", async () => {
     const user = userEvent.setup();
     render(<App />);
+    await enterBirthdayHome(user);
     await user.click(screen.getByRole("button", { name: "开始追奶酪" }));
 
     for (const id of ["07", "02", "01", "05", "03", "09", "04", "08", "06"]) {
@@ -48,6 +74,7 @@ describe("birthday adventure entry", () => {
   it("keeps cheese highlights only for the current page lifetime", async () => {
     const user = userEvent.setup();
     const firstVisit = render(<App />);
+    await enterBirthdayHome(user);
 
     await user.click(firstVisit.container.querySelector(".button--primary") as HTMLButtonElement);
     await user.click(firstVisit.container.querySelector(".cheese-node") as HTMLButtonElement);
@@ -57,6 +84,7 @@ describe("birthday adventure entry", () => {
 
     firstVisit.unmount();
     const nextVisit = render(<App />);
+    await enterBirthdayHome(user);
     await user.click(nextVisit.container.querySelector(".button--primary") as HTMLButtonElement);
 
     expect(nextVisit.container.querySelector(".cheese-node")).not.toHaveClass("cheese-node--collected");
@@ -65,6 +93,7 @@ describe("birthday adventure entry", () => {
   it("reveals a concise birthday message inside the final banner", async () => {
     const user = userEvent.setup();
     const { container } = render(<App />);
+    await enterBirthdayHome(user);
 
     await user.click(container.querySelector(".button--primary") as HTMLButtonElement);
     for (let index = 0; index < 9; index += 1) {

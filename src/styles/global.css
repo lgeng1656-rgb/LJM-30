@@ -80,6 +80,7 @@ button:focus-visible {
   box-shadow: 0 5px 13px rgba(101, 63, 27, 0.08);
 }
 
+.intro-video,
 .hero,
 .map-page,
 .memory-detail,
@@ -89,6 +90,57 @@ button:focus-visible {
   width: 100%;
   height: 100%;
   overflow: hidden;
+}
+
+.intro-video {
+  background: #17120f;
+}
+
+.intro-video__media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #17120f;
+}
+
+.intro-video__overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-items: end;
+  justify-items: center;
+  padding: 6%;
+  border: 0;
+  cursor: pointer;
+  color: var(--ink);
+  background: linear-gradient(transparent 58%, rgba(23, 18, 15, .58));
+}
+
+.intro-video__prompt {
+  padding: .8em 1.5em;
+  border: 1px solid rgba(117, 76, 36, .18);
+  border-radius: 999px;
+  background: rgba(255, 248, 230, .94);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .2);
+  font-family: var(--font-display);
+  font-size: clamp(13px, 1.45vw, 23px);
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.intro-video__overlay--failed {
+  align-content: center;
+  align-items: center;
+  gap: 2vh;
+  color: #fff8ea;
+  background: rgba(23, 18, 15, .88);
+  text-align: center;
+}
+
+.intro-video__overlay--failed strong {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2.2vw, 34px);
 }
 
 .hero__art {

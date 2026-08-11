@@ -2,13 +2,14 @@ import { useState } from "react";
 import { birthdayContent } from "../content/memories";
 import { Finale } from "../components/Finale";
 import { Hero } from "../components/Hero";
+import { IntroVideo } from "../components/IntroVideo";
 import { MemoryDetail } from "../components/MemoryDetail";
 import { MemoryMap } from "../components/MemoryMap";
 
-type Screen = "home" | "map" | "memory" | "finale";
+type Screen = "intro" | "home" | "map" | "memory" | "finale";
 
 export function App() {
-  const [screen, setScreen] = useState<Screen>("home");
+  const [screen, setScreen] = useState<Screen>("intro");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [collectedIds, setCollectedIds] = useState<Set<string>>(() => new Set());
 
@@ -26,6 +27,9 @@ export function App() {
   return (
     <main className="app-shell">
       <div className={`experience-stage experience-stage--${screen}`}>
+        {screen === "intro" && (
+          <IntroVideo videoSrc="/media/intro/tom-and-jerry.mp4" onEnter={() => setScreen("home")} />
+        )}
         {screen === "home" && <Hero onStart={() => setScreen("map")} />}
         {screen === "map" && (
           <MemoryMap
