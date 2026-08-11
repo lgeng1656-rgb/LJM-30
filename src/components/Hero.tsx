@@ -17,7 +17,7 @@ export function Hero({ onStart }: HeroProps) {
       </div>
       <img
         className="hero__art"
-        src="/assets/hero-adventure.png"
+        src="/assets/hero-adventure.webp"
         alt="汤姆追着带着奶酪奔向新旅程的杰瑞"
       />
       <aside className="hero__note" aria-label="小贴士">

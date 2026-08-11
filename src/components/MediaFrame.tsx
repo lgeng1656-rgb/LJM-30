@@ -11,7 +11,7 @@ export function MediaFrame({ item }: MediaFrameProps) {
   if (failed) {
     return (
       <div className="media-frame media-frame--empty" role="img" aria-label={item.alt}>
-        <img src="/assets/cheese.png" alt="" />
+        <img src="/assets/cheese.webp" alt="" />
         <strong>这段回忆正在等你</strong>
         <span>把照片或短视频放进对应素材文件夹，它就会出现在这里。</span>
       </div>

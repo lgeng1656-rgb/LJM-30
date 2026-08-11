@@ -12,7 +12,7 @@ export function Finale({ videoSrc, onReturnToMap }: FinaleProps) {
   if (revealed) {
     return (
       <section className="birthday-finale" aria-labelledby="birthday-title">
-        <img src="/assets/finale-banner.png" alt="汤姆和杰瑞在新旅程入口共同拉开生日横幅" />
+        <img src="/assets/finale-banner.webp" alt="汤姆和杰瑞在新旅程入口共同拉开生日横幅" />
         <div className="birthday-finale__copy">
           <h1 id="birthday-title">李金蔓，生日快乐！</h1>
         </div>

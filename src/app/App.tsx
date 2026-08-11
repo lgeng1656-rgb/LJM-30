@@ -4,19 +4,16 @@ import { Finale } from "../components/Finale";
 import { Hero } from "../components/Hero";
 import { MemoryDetail } from "../components/MemoryDetail";
 import { MemoryMap } from "../components/MemoryMap";
-import { loadProgress, saveProgress } from "../features/progress/storage";
 
 type Screen = "home" | "map" | "memory" | "finale";
 
 export function App() {
   const [screen, setScreen] = useState<Screen>("home");
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [collectedIds, setCollectedIds] = useState<Set<string>>(() => loadProgress());
+  const [collectedIds, setCollectedIds] = useState<Set<string>>(() => new Set());
 
   const openMemory = (index: number) => {
-    const next = new Set(collectedIds).add(birthdayContent.memories[index].id);
-    setCollectedIds(next);
-    saveProgress(next);
+    setCollectedIds((current) => new Set(current).add(birthdayContent.memories[index].id));
     setSelectedIndex(index);
     setScreen("memory");
   };

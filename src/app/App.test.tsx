@@ -45,17 +45,34 @@ describe("birthday adventure entry", () => {
     expect(screen.getByLabelText("李金蔓生日祝福视频")).toBeInTheDocument();
   });
 
-  it("reveals a concise birthday message inside the final banner", async () => {
-    localStorage.setItem(
-      "lijinman-birthday-progress-v2",
-      JSON.stringify(["01", "02", "03", "04", "05", "06", "07", "08", "09"]),
-    );
+  it("keeps cheese highlights only for the current page lifetime", async () => {
     const user = userEvent.setup();
-    render(<App />);
+    const firstVisit = render(<App />);
 
-    await user.click(screen.getByRole("button", { name: "开始追奶酪" }));
-    await user.click(screen.getByRole("button", { name: "打开第 10 块奶酪：最后的惊喜" }));
-    await user.click(screen.getByRole("button", { name: "展开生日横幅" }));
+    await user.click(firstVisit.container.querySelector(".button--primary") as HTMLButtonElement);
+    await user.click(firstVisit.container.querySelector(".cheese-node") as HTMLButtonElement);
+    await user.click(firstVisit.container.querySelectorAll(".memory-detail__actions button")[1] as HTMLButtonElement);
+
+    expect(firstVisit.container.querySelector(".cheese-node")).toHaveClass("cheese-node--collected");
+
+    firstVisit.unmount();
+    const nextVisit = render(<App />);
+    await user.click(nextVisit.container.querySelector(".button--primary") as HTMLButtonElement);
+
+    expect(nextVisit.container.querySelector(".cheese-node")).not.toHaveClass("cheese-node--collected");
+  });
+
+  it("reveals a concise birthday message inside the final banner", async () => {
+    const user = userEvent.setup();
+    const { container } = render(<App />);
+
+    await user.click(container.querySelector(".button--primary") as HTMLButtonElement);
+    for (let index = 0; index < 9; index += 1) {
+      await user.click(container.querySelectorAll(".cheese-node")[index] as HTMLButtonElement);
+      await user.click(container.querySelectorAll(".memory-detail__actions button")[1] as HTMLButtonElement);
+    }
+    await user.click(container.querySelector(".cheese-node--final") as HTMLButtonElement);
+    await user.click(container.querySelector(".video-letter__continue") as HTMLButtonElement);
 
     expect(screen.getByText("李金蔓，生日快乐！")).toBeInTheDocument();
     expect(screen.queryByText("新地图已开启，继续做最快乐的杰瑞。")).not.toBeInTheDocument();

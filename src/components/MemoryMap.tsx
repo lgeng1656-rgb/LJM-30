@@ -19,7 +19,7 @@ export function MemoryMap({ memories, collectedIds, onOpen, onOpenFinale }: Memo
 
   return (
     <section className="map-page" aria-label="十块奶酪回忆地图">
-      <img className="memory-map__art" src="/assets/memory-map.png" alt="通往九段回忆和最后惊喜的人生游乐地图" />
+      <img className="memory-map__art" src="/assets/memory-map.webp" alt="通往九段回忆和最后惊喜的人生游乐地图" />
       {memories.map((memory, index) => {
         const collected = collectedIds.has(memory.id);
         const [x, y] = nodePositions[index];
@@ -32,9 +32,8 @@ export function MemoryMap({ memories, collectedIds, onOpen, onOpenFinale }: Memo
             type="button"
             aria-label={`打开第 ${memory.id} 块奶酪：${memory.title}`}
           >
-            <img src="/assets/cheese.png" alt="" />
+            <img src="/assets/cheese.webp" alt="" />
             <span className="cheese-node__number">{memory.id}</span>
-            {collected && <span className="cheese-node__stamp">已找到</span>}
           </button>
         );
       })}
@@ -46,7 +45,7 @@ export function MemoryMap({ memories, collectedIds, onOpen, onOpenFinale }: Memo
         type="button"
         aria-label="打开第 10 块奶酪：最后的惊喜"
       >
-        <img src="/assets/cheese.png" alt="" />
+        <img src="/assets/cheese.webp" alt="" />
         <span className="cheese-node__number">10</span>
         <span className="cheese-node__hint">{complete ? "最后惊喜" : `${collectedIds.size}/9`}</span>
       </button>
