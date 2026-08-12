@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { MemoryItem } from "../content/types";
 import { MediaFrame } from "./MediaFrame";
 
@@ -14,6 +14,15 @@ export function MemoryDetail({ memory, onPrevious, onNext, onBack }: MemoryDetai
   const selectedMediaIndex = selection.memoryId === memory.id ? selection.mediaIndex : 0;
 
   const selectedMedia = memory.media[selectedMediaIndex] ?? memory.media[0];
+
+  useEffect(() => {
+    memory.media.slice(1).forEach((item) => {
+      if (item.kind === "image") {
+        const image = new Image();
+        image.src = item.src;
+      }
+    });
+  }, [memory.id, memory.media]);
 
   return (
     <section className="memory-detail" aria-labelledby="memory-title">

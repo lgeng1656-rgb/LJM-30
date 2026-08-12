@@ -26,5 +26,5 @@ export function MediaFrame({ item }: MediaFrameProps) {
     );
   }
 
-  return <img className="media-frame" src={item.src} alt={item.alt} loading="lazy" onError={() => setFailed(true)} />;
+  return <img className="media-frame" src={item.src} alt={item.alt} loading="eager" onError={() => setFailed(true)} />;
 }

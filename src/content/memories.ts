@@ -72,5 +72,5 @@ export const birthdayContent: BirthdayContent = {
           })),
     };
   }),
-  finaleVideo: "https://geng000-1454170689.cos.ap-guangzhou.myqcloud.com/10.mp4",
+  finaleVideo: "https://geng000-1454170689.cos.ap-guangzhou.myqcloud.com/10%E6%9B%B4%E6%96%B0.mp4",
 };

@@ -148,6 +148,23 @@ describe("birthday adventure entry", () => {
     expect(screen.getByLabelText("李金蔓生日祝福视频")).toBeInTheDocument();
   });
 
+  it("opens the final surprise when moving next from memory nine after collecting all memories", async () => {
+    const user = userEvent.setup();
+    const { container } = render(<App />);
+    await enterBirthdayHome(user);
+    await user.click(container.querySelector(".button--primary") as HTMLButtonElement);
+
+    for (let index = 0; index < 8; index += 1) {
+      await user.click(container.querySelectorAll(".cheese-node")[index] as HTMLButtonElement);
+      await user.click(container.querySelectorAll(".memory-detail__actions button")[1] as HTMLButtonElement);
+    }
+
+    await user.click(container.querySelectorAll(".cheese-node")[8] as HTMLButtonElement);
+    await user.click(container.querySelectorAll(".memory-detail__actions button")[2] as HTMLButtonElement);
+
+    expect(container.querySelector(".video-letter")).toBeInTheDocument();
+  });
+
   it("keeps cheese highlights only for the current page lifetime", async () => {
     const user = userEvent.setup();
     const firstVisit = render(<App />);

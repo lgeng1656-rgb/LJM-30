@@ -24,6 +24,16 @@ export function App() {
     openMemory(nextIndex);
   };
 
+  const openNextMemory = () => {
+    const isLastMemory = selectedIndex === birthdayContent.memories.length - 1;
+    if (isLastMemory && collectedIds.size === birthdayContent.memories.length) {
+      setScreen("finale");
+      return;
+    }
+
+    shiftMemory(1);
+  };
+
   return (
     <main className="app-shell">
       <div className={`experience-stage experience-stage--${screen}`}>
@@ -43,7 +53,7 @@ export function App() {
           <MemoryDetail
             memory={birthdayContent.memories[selectedIndex]}
             onPrevious={() => shiftMemory(-1)}
-            onNext={() => shiftMemory(1)}
+            onNext={openNextMemory}
             onBack={() => setScreen("map")}
           />
         )}
