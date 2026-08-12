@@ -8,7 +8,7 @@
   },
   "routes": [
     {
-      "pattern": "154674.xyz",
+      "pattern": "ljm.154674.xyz",
       "custom_domain": true
     }
   ]
